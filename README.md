@@ -1,4 +1,3 @@
 # datalist-on-select
 
-
-![image](https://user-images.githubusercontent.com/7911481/73508057-2c3b1a80-441e-11ea-8c3c-09142f6dd7d3.png)
+![image](https://user-images.githubusercontent.com/7911481/73508093-4e349d00-441e-11ea-9337-423f3fdf1ede.png)
