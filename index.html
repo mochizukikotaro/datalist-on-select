@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form action='result.html' method="post">
+    <select name="pets" id="datalist-on-select">
+      <option value="">Select</option>
+      <option value="1">(1) Cat</option>
+      <option value="2">(2) Dog</option>
+      <option value="3">(3) Camel</option>
+    </select>
+    <input type="submit" value="submit">
+  </form>
+</body>
+</html>
+
+<script>
+const select = document.getElementById('datalist-on-select')
+const options = document.getElementById('datalist-on-select').options
+
+var div = document.createElement('div')
+var input = document.createElement('input')
+input.setAttribute('list', 'dlist')
+input.type = 'search'
+var datalist = document.createElement('datalist')
+datalist.id = 'dlist'
+
+parent = select.parentNode
+parent.insertBefore(div, select)
+select.style.display = 'none'
+
+const values = []
+const innerTexts = []
+Array.from(options).forEach(e => {
+  values[e.innerText] = e.value
+  innerTexts[e.value] = e.innerText
+})
+const texts = Object.values(innerTexts)
+
+texts.forEach(text => {
+  option = document.createElement('option')
+  option.value = text
+  datalist.appendChild(option)
+});
+
+div.appendChild(input)
+div.appendChild(datalist)
+input.placeholder = innerTexts[""]
+
+input.addEventListener('focusout', (e) => {
+  v = e.target.value
+  if (texts.every(text => text != v)) {
+    select.value = ""
+    input.value = ""
+  }
+})
+
+input.addEventListener('input', (e) => {
+  v = e.target.value
+  texts.filter(text => {
+    if (text == v) {
+      select.value = values[text]
+    }
+  })
+})
+</script>
